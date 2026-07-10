@@ -26,3 +26,41 @@ resource "aws_subnet" "this" {
     }
   )
 }
+resource "aws_internet_gateway" "retail" {
+  vpc_id = aws_vpc.retail.id
+
+  tags = merge(
+    local.common_tags,
+    {
+      Name = "${local.name_prefix}-igw"
+    }
+  )
+}
+
+resource "aws_route_table" "public" {
+  vpc_id = aws_vpc.retail.id
+
+  tags = merge(
+    local.common_tags,
+    {
+      Name = "${local.name_prefix}-public-rt"
+      Tier = "public"
+    }
+  )
+}
+
+resource "aws_route" "public_internet" {
+  route_table_id         = aws_route_table.public.id
+  destination_cidr_block = "0.0.0.0/0"
+  gateway_id             = aws_internet_gateway.retail.id
+}
+
+resource "aws_route_table_association" "public" {
+  for_each = toset([
+    "public_a",
+    "public_b"
+  ])
+
+  subnet_id      = aws_subnet.this[each.value].id
+  route_table_id = aws_route_table.public.id
+}

@@ -38,3 +38,12 @@ output "subnet_cidr_blocks" {
     name => subnet.cidr_block
   }
 }
+output "internet_gateway_id" {
+  description = "ID of the Internet Gateway attached to the VPC."
+  value       = aws_internet_gateway.retail.id
+}
+
+output "public_route_table_id" {
+  description = "ID of the public route table."
+  value       = aws_route_table.public.id
+}
