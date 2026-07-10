@@ -1,13 +1,10 @@
-retail-commerce-platform/
-├── README.md
-├── docs/
-│   └── architecture.md
-├── terraform/
-│   ├── versions.tf
-│   ├── providers.tf
-│   ├── variables.tf
-│   ├── locals.tf
-│   ├── main.tf
-│   ├── outputs.tf
-│   └── terraform.tfvars.example
-└── .gitignore
+.terraform/
+*.tfstate
+*.tfstate.*
+*.tfplan
+crash.log
+crash.*.log
+terraform.tfvars
+*.auto.tfvars
+*.auto.tfvars.json
+.terraform.lock.hcl
