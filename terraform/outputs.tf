@@ -47,3 +47,27 @@ output "public_route_table_id" {
   description = "ID of the public route table."
   value       = aws_route_table.public.id
 }
+output "application_private_route_table_id" {
+  description = "ID of the private application route table."
+  value       = aws_route_table.application_private.id
+}
+
+output "database_private_route_table_id" {
+  description = "ID of the private database route table."
+  value       = aws_route_table.database_private.id
+}
+
+output "load_balancer_security_group_id" {
+  description = "ID of the load balancer security group."
+  value       = aws_security_group.load_balancer.id
+}
+
+output "application_security_group_id" {
+  description = "ID of the application security group."
+  value       = aws_security_group.application.id
+}
+
+output "database_security_group_id" {
+  description = "ID of the database security group."
+  value       = aws_security_group.database.id
+}
